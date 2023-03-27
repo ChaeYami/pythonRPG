@@ -73,11 +73,8 @@ def monster_death(Monsters):
         if name.hp <= 0:
             dead_monsters.append(key)
             
-
     for name in dead_monsters:
         del Monsters[name]
-        
-    
 
     if len(Monsters) <= 0:
         return Monsters, True
