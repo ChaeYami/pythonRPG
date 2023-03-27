@@ -8,12 +8,13 @@ from time import sleep
 
 def create_monsters():  # 몬스터들을 저장
     global Hero
-    Hero = Player(global_name, 10000, 2000, 300)  # 마력 값 추가
+    Hero = Player(global_name, 10000, 2000, 300, 1)  # 마력 값 추가
     Monsters = {}
+    
+    Monsters['종민몬'] = Monster('종민몬', 2000, 2000)
     Monsters['탁근몬'] = Monster('탁근몬', 3000, 1000)
-    Monsters['종민몬'] = Monster('종민몬', 3000, 2000)
     Monsters['영우몬'] = Monster('영우몬', 4000, 2000)
-    Monsters['진규몬'] = Monster('진규몬', 4000, 1000)
+    Monsters['진규몬'] = Monster('진규몬', 5000, 1500)
 
     return Hero, Monsters
 
@@ -22,7 +23,7 @@ def show_start(Player, Monsters):
     print(f"\n★ ★ {Player.name}용사님 등장!! ★ ★")
     print("-------------------------------------------------------------------")
     print(
-        f"HP : {Player.hp}/{Player.max_hp} | MP : {Player.mp}/{Player.max_mp} | 공격력 : {Player.power}")
+        f"HP : {Player.hp}/{Player.max_hp} | MP : {Player.mp}/{Player.max_mp} | 공격력 : {Player.power} | LV : {Player.lv}")
     print("-------------------------------------------------------------------")
     print("\n야생의 몬스터들이 등장했다! \n")
 
@@ -46,13 +47,13 @@ def player_turn(Player, Monsters):
             
     # 몬스터 딕셔너리에 없는 대상을 선택했을 시 예외 처리
     try:
-        other = input('\n ▶ 공격 대상을 선택하세요 (이름입력) : ')
+        other = input('\n ... 마법 공격은 일반공격보다 좀 더 강하며 MP를 50 소모합니다. \n ... 궁극기는 마법 공격과 함께 체력을 회복합니다. 회복량은 소모된 HP에 비례합니다. MP를 100 소모합니다. \n\n ▶ 공격 대상을 선택하세요 (이름입력) : ')
 
         command = input(
-            '\n ... 마법 공격은 일반공격보다 좀 더 강하며 MP를 50 소모합니다. \n ... 궁극기는 마법 공격과 함께 체력을 회복합니다. 회복량은 소모된 HP에 비례합니다. MP를 100 소모합니다. \n\n ▶ 공격 방법을 선택하세요 (1. 일반공격 | 2. 마법공격 | 3. 궁극기) : ')
+            '\n ▶ 공격 방법을 선택하세요 (숫자 입력)\n [1. 일반공격 | 2. 마법공격 | 3. 궁극기] : ')
 
         if command == '1':
-            Player.attack(Monsters[other])
+            use_mp(0,'physical')
         elif command == '2':
             use_mp(50,'magic')
                 
@@ -71,9 +72,12 @@ def monster_death(Monsters):
     for key, name in Monsters.items():
         if name.hp <= 0:
             dead_monsters.append(key)
+            
 
     for name in dead_monsters:
         del Monsters[name]
+        
+    
 
     if len(Monsters) <= 0:
         return Monsters, True
@@ -100,3 +104,4 @@ def player_death(Player):
         return True
     else:
         return False
+
