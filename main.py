@@ -5,7 +5,6 @@ from time import sleep
 # ========================== 실행 ==========================
 
 
-
 def game():
     Hero, Monsters = create_monsters()
 
@@ -17,8 +16,10 @@ def game():
         print("     1. 튜토리얼")  
         print("     2. 전투")
         print("     3. 내 정보 보기")
+        print("     4. 몬스터 정보 보기")
+        print("     5. 종료")
         
-         
+  
         
         command = int(input("숫자 선택"))
         
@@ -49,15 +50,20 @@ def game():
                     break
                 sleep(1)
             
+        elif command == 3:
+            show_start(Hero, Monsters)
+            
+        elif command == 4:
+            show_monster(Hero, Monsters)
+            
+        elif command == 5:
+            print("게임을 종료합니다.")
+            break   
             
             
-        
+            
         else:
             print("잘못입력")
-
-            
-                
-                
-                
+     
                 
 game()

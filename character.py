@@ -35,11 +35,11 @@ global_name = input('\n용사님의 이름을 입력하세요 : ')
 
 
 class Player(Character):
-    def __init__(self, name, mp, lv):
+    def __init__(self, name, hp,power, mp, lv):
         self.name = name
-        self.hp = 10000 + (lv-1)*1000
-        self.max_hp = 10000 + (lv-1)*1000
-        self.power = 2000 + (lv-1)*500
+        self.hp = hp
+        self.max_hp = hp
+        self.power = power
         self.max_mp = mp
         self.mp = mp
         self.lv = lv
@@ -78,11 +78,11 @@ class Player(Character):
         print(f" .. 남은 마력: {self.mp}/{self.max_mp}")
 
         if other.hp == 0:
-            # self.power += 500
             self.lv += 1
-            # self.max_hp += 1000
+            self.max_hp += 500
+            self.power += 200
             print(f"\n ... {other.name}을 처치했다!!")
-            print(f"\n ... 레벨 1 증가 | 공격력 증가, 최대 체력  증가.")
+            print(f"\n ... 레벨 1 증가 | 공격력 증가, 최대 체력 증가.")
         else:
             print(f"\n{other.name} : {other.hp}/{other.max_hp} [HP]")
 
@@ -90,11 +90,11 @@ class Player(Character):
 
 # ========================== 몬스터 ==========================
 class Monster(Character):
-    def __init__(self, name, hp, power, player):
+    def __init__(self, name, hp, power):
         self.name = name
-        self.hp = hp + (player.lv-1)*100
-        self.max_hp = hp + (player.lv-1)*100
-        self.power = power + (player.lv-1)*100
+        self.hp = hp 
+        self.max_hp = hp
+        self.power = power 
         
 
     def wait(self):

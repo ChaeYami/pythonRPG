@@ -9,13 +9,13 @@ from time import sleep
 def create_monsters():  # 몬스터들을 저장
     global Hero
     
-    Hero = Player(global_name, 300, 1)  # 마력 값 추가
+    Hero = Player(global_name, 10000,2000, 300, 1)  # 마력 값 추가
     Monsters = {}
     
-    Monsters['종민몬'] = Monster('종민몬', 2000, 2000, Hero)
-    Monsters['탁근몬'] = Monster('탁근몬', 3000, 1000, Hero)
-    Monsters['영우몬'] = Monster('영우몬', 4000, 2000, Hero)
-    Monsters['진규몬'] = Monster('진규몬', 5000, 1500, Hero)
+    Monsters['종민몬'] = Monster('종민몬', 2000, 2000)
+    Monsters['탁근몬'] = Monster('탁근몬', 3000, 1000)
+    Monsters['영우몬'] = Monster('영우몬', 4000, 2000)
+    Monsters['진규몬'] = Monster('진규몬', 5000, 1500)
 
     return Hero, Monsters
 
