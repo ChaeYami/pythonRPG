@@ -1,5 +1,5 @@
 from character import *
-from play import *
+from function import *
 from time import sleep
 
 # ========================== 실행 ==========================
@@ -10,18 +10,18 @@ def game():
 
     while True:
         
+        print("\n\n -------------------------------------------")
+        print(f"\033[38;2;81;169;255m       ~용사님의 대모험~       ♥{global_name}용사님♥ \033[0m") 
         print(" -------------------------------------------")
-        print("                 용사님의 대모험         ") 
+        print("\033[38;2;206;149;255m         1. 튜토리얼")  
+        print("         2. 전투")
+        print("         3. 내 정보 보기")
+        print("         4. 몬스터 도감")
+        print("         5. 종료\033[0m")
         print(" -------------------------------------------")
-        print("     1. 튜토리얼")  
-        print("     2. 전투")
-        print("     3. 내 정보 보기")
-        print("     4. 몬스터 정보 보기")
-        print("     5. 종료")
-        
   
         
-        command = int(input("숫자 선택"))
+        command = int(input(" ...  ▶ 숫자 선택 : "))
         
         if command == 1:
             skill_info()
@@ -54,7 +54,11 @@ def game():
             show_start(Hero, Monsters)
             
         elif command == 4:
-            show_monster(Hero, Monsters)
+            print("\n-----------------------------------------")
+            print("\033[38;2;74;215;112m              ♥몬스터 도감♥\033[0m")
+            print("-----------------------------------------")
+            print("\n종민몬 [ HP : 2000/2000 | 공격력 : 2000]\n탁근몬 [ HP : 3000/3000 | 공격력 : 1000]\n영우몬 [ HP : 4000/4000 | 공격력 : 2000]\n진규몬 [ HP : 5000/5000 | 공격력 : 1500]")
+            print("\n-----------------------------------------")
             
         elif command == 5:
             print("게임을 종료합니다.")

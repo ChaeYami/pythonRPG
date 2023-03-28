@@ -1,5 +1,4 @@
 from character import *
-from play import *
 from random import choices
 from time import sleep
 
@@ -21,25 +20,26 @@ def create_monsters():  # 몬스터들을 저장
 
 # 플레이어와 몬스터들의 상태
 def show_start(Player, Monsters):
-    print(f"\n★ ★ {Player.name}용사님 등장!! ★ ★")
-    print("-------------------------------------------------------------------")
+    print("\n\n---------------------------------------------------------------")
+    print(f"\033[38;2;255;177;108m          ♥ ♥ {Player.name}용사님 등장!! ♥ ♥\033[0m")
+    print("---------------------------------------------------------------")
     print(
-        f"HP : {Player.hp}/{Player.max_hp} | MP : {Player.mp}/{Player.max_mp} | 공격력 : {Player.power} | LV : {Player.lv}")
-    print("-------------------------------------------------------------------")
+        f"\033[38;2;102;255;178m   HP : {Player.hp}/{Player.max_hp} | MP : {Player.mp}/{Player.max_mp} | 공격력 : {Player.power} | LV : {Player.lv}\033[0m")
+    print("---------------------------------------------------------------\n")
     
     
 def show_monster(Player, Monsters):
-    print("\n야생의 몬스터들이 등장했다! \n")
+    print("\033[38;2;255;177;108m\n     야생의 몬스터들이 등장했다! \n\033[0m")
 
     for key, name in Monsters.items():  # 몬스터들의 상태 표시
 
-        print(f"{name.name} [ HP : {name.hp}/{name.max_hp} | 공격력 : {name.power}]  ")
+        print(f"\033[38;2;255;108;167m    {name.name} \033[38;2;102;255;178m[ HP : {name.hp}/{name.max_hp} | 공격력 : {name.power}]  \033[0m")
         
         
         
         
 def skill_info():
-    print("\n마법 공격은 일반공격보다 좀 더 강하며 MP를 50 소모합니다. \n ... 궁극기는 마법 공격과 함께 체력을 회복합니다. 회복량은 소모된 HP에 비례합니다. MP를 100 소모합니다. \n\n")
+    print("\033[38;2;255;181;216m\n\n전투는 \033[38;2;102;255;178m몬스터 네 마리와 플레이어 한 명\033[38;2;255;181;216m이 진행하게 되며, 플레이어의 선공으로 시작됩니다. \n매 턴마다 공격할 몬스터를 \033[38;2;102;255;178m이름\033[38;2;255;181;216m으로 선택하세요. \n\n플레이어는 \033[38;2;102;255;178m일반 공격, 마법 공격, 궁극기\033[38;2;255;181;216m를 선택해서 사용할 수 있습니다. \033[38;2;255;108;167m\n\n일반 공격 : 가장 낮은 공격력 / mp 소모 0\n마법 공격 : 조금 더 강한 공격 / MP 50 소모\n궁극기 : 마법 공격과 함께 체력 회복 / mp 100 소모\n궁극기의 회복량은 소모된 HP에 비례합니다.  \n\n\033[0m")
 
 # ---------- 플레이어 턴 ----------
 
