@@ -19,8 +19,6 @@ class Character:
 
         print(f"\n .. {self.name}에게 공격 받음 | HP - {damage}")
         if other.hp == 0:
-            self.power += 1000
-            
             
             print(f"\n ... {other.name}을 처치했다!!")
         
@@ -31,18 +29,22 @@ class Character:
 # ---------- 플레이어 이름 받아오기 ----------
 global_name = input('\n용사님의 이름을 입력하세요 : ')
 
+
+
 # ========================== 플레이어 ==========================
 
 
 class Player(Character):
-    def __init__(self, name, hp, power, mp, lv):
+    def __init__(self, name, mp, lv):
         self.name = name
-        self.max_hp = hp
-        self.hp = hp
-        self.power = power
+        self.hp = 10000 + (lv-1)*1000
+        self.max_hp = 10000 + (lv-1)*1000
+        self.power = 2000 + (lv-1)*500
         self.max_mp = mp
         self.mp = mp
         self.lv = lv
+        
+        
 
     def use_skill(self, other, skill_type):
         if skill_type == 'physical':
@@ -55,7 +57,7 @@ class Player(Character):
             
         elif skill_type == 'heal':
             damage = random.randint(self.power * 0.9, self.power * 1.5)
-            exhausted_hp = 10000-self.hp
+            exhausted_hp = self.max_hp-self.hp
             heal_amount = int(exhausted_hp * 0.4)
             self.hp += heal_amount
             mp_cost = 100
@@ -76,11 +78,11 @@ class Player(Character):
         print(f" .. 남은 마력: {self.mp}/{self.max_mp}")
 
         if other.hp == 0:
-            self.power += 500
+            # self.power += 500
             self.lv += 1
-            self.max_hp += 1000
+            # self.max_hp += 1000
             print(f"\n ... {other.name}을 처치했다!!")
-            print(f"\n ... 레벨 1 증가 | 공격력 500 증가, 최대 체력 1000 증가.")
+            print(f"\n ... 레벨 1 증가 | 공격력 증가, 최대 체력  증가.")
         else:
             print(f"\n{other.name} : {other.hp}/{other.max_hp} [HP]")
 
@@ -88,6 +90,12 @@ class Player(Character):
 
 # ========================== 몬스터 ==========================
 class Monster(Character):
+    def __init__(self, name, hp, power, player):
+        self.name = name
+        self.hp = hp + (player.lv-1)*100
+        self.max_hp = hp + (player.lv-1)*100
+        self.power = power + (player.lv-1)*100
+        
 
     def wait(self):
         print(f'\n .. {self.name}의 공격이 빗나갔다!!')
